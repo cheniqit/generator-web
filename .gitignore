@@ -1,0 +1,15 @@
+.svn
+.settings
+.project
+**/.settings
+**/.classpath
+**/.eclipse
+**/.project
+**/target
+*.iml
+.idea/
+target
+.DS_Store
+classes
+*.ipr
+*.iws
