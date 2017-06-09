@@ -24,6 +24,7 @@ public class GeneratorParam {
     private String[] tableNames;
     
     private String[] modelNames;
+    private String useActualColumnNames;
 
 	public String getConnection() {
 		return connection;
@@ -112,5 +113,12 @@ public class GeneratorParam {
 	public void setBuildPath(String buildPath) {
 		this.buildPath = buildPath;
 	}
-    
+
+	public String getUseActualColumnNames() {
+		return useActualColumnNames;
+	}
+
+	public void setUseActualColumnNames(String useActualColumnNames) {
+		this.useActualColumnNames = useActualColumnNames;
+	}
 }

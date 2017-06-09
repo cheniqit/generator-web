@@ -205,6 +205,7 @@ public class GeneratorServlet extends HttpServlet {
 		for(int i = 0;i<param.getTableNames().length;i++){
 			if(StringUtils.isNotBlank(param.getTableNames()[i]) && StringUtils.isNotBlank(param.getModelNames()[i])){
 				TableConfiguration tableConfiguration = new TableConfiguration(context);
+				tableConfiguration.addProperty(PropertyRegistry.TABLE_USE_ACTUAL_COLUMN_NAMES, StringUtils.defaultIfEmpty(param.getUseActualColumnNames(), "true"));
 				tableConfiguration.setTableName(param.getTableNames()[i]);
 				tableConfiguration.setDomainObjectName(param.getModelNames()[i]);
 				tableConfiguration.setCountByExampleStatementEnabled(true);
