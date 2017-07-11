@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mogoroom.service.cntr.dao.SaleContractDetailMapper">
+  <resultMap id="BaseResultMap" type="com.mogoroom.service.cntr.dao.SaleContractDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="saleContractId" jdbcType="INTEGER" property="saleContractId" />
+    <result column="confirmChannel" jdbcType="VARCHAR" property="confirmChannel" />
+    <result column="freeForegiftActivity" jdbcType="TINYINT" property="freeForegiftActivity" />
+    <result column="valid" jdbcType="BIT" property="valid" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="createBy" jdbcType="INTEGER" property="createBy" />
+    <result column="createByType" jdbcType="TINYINT" property="createByType" />
+    <result column="createTime" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="updateBy" jdbcType="INTEGER" property="updateBy" />
+    <result column="updateByType" jdbcType="INTEGER" property="updateByType" />
+    <result column="updateTime" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, saleContractId, confirmChannel, freeForegiftActivity, valid, remark, createBy, 
+    createByType, createTime, updateBy, updateByType, updateTime
+  </sql>
+  <select id="selectByExample" parameterType="com.mogoroom.service.cntr.dao.SaleContractDetailExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cntr_salecontract_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cntr_salecontract_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cntr_salecontract_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.mogoroom.service.cntr.dao.SaleContractDetailExample">
+    delete from cntr_salecontract_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.mogoroom.service.cntr.dao.SaleContractDetail">
+    insert into cntr_salecontract_detail (id, saleContractId, confirmChannel, 
+      freeForegiftActivity, valid, remark, 
+      createBy, createByType, createTime, 
+      updateBy, updateByType, updateTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{saleContractId,jdbcType=INTEGER}, #{confirmChannel,jdbcType=VARCHAR}, 
+      #{freeForegiftActivity,jdbcType=TINYINT}, #{valid,jdbcType=BIT}, #{remark,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=INTEGER}, #{createByType,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateBy,jdbcType=INTEGER}, #{updateByType,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mogoroom.service.cntr.dao.SaleContractDetail">
+    insert into cntr_salecontract_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="saleContractId != null">
+        saleContractId,
+      </if>
+      <if test="confirmChannel != null">
+        confirmChannel,
+      </if>
+      <if test="freeForegiftActivity != null">
+        freeForegiftActivity,
+      </if>
+      <if test="valid != null">
+        valid,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createBy != null">
+        createBy,
+      </if>
+      <if test="createByType != null">
+        createByType,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="updateBy != null">
+        updateBy,
+      </if>
+      <if test="updateByType != null">
+        updateByType,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="saleContractId != null">
+        #{saleContractId,jdbcType=INTEGER},
+      </if>
+      <if test="confirmChannel != null">
+        #{confirmChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="freeForegiftActivity != null">
+        #{freeForegiftActivity,jdbcType=TINYINT},
+      </if>
+      <if test="valid != null">
+        #{valid,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createByType != null">
+        #{createByType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateByType != null">
+        #{updateByType,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.mogoroom.service.cntr.dao.SaleContractDetailExample" resultType="java.lang.Long">
+    select count(*) from cntr_salecontract_detail
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update cntr_salecontract_detail
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.saleContractId != null">
+        saleContractId = #{record.saleContractId,jdbcType=INTEGER},
+      </if>
+      <if test="record.confirmChannel != null">
+        confirmChannel = #{record.confirmChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freeForegiftActivity != null">
+        freeForegiftActivity = #{record.freeForegiftActivity,jdbcType=TINYINT},
+      </if>
+      <if test="record.valid != null">
+        valid = #{record.valid,jdbcType=BIT},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createBy != null">
+        createBy = #{record.createBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.createByType != null">
+        createByType = #{record.createByType,jdbcType=TINYINT},
+      </if>
+      <if test="record.createTime != null">
+        createTime = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateBy != null">
+        updateBy = #{record.updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateByType != null">
+        updateByType = #{record.updateByType,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        updateTime = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update cntr_salecontract_detail
+    set id = #{record.id,jdbcType=INTEGER},
+      saleContractId = #{record.saleContractId,jdbcType=INTEGER},
+      confirmChannel = #{record.confirmChannel,jdbcType=VARCHAR},
+      freeForegiftActivity = #{record.freeForegiftActivity,jdbcType=TINYINT},
+      valid = #{record.valid,jdbcType=BIT},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      createBy = #{record.createBy,jdbcType=INTEGER},
+      createByType = #{record.createByType,jdbcType=TINYINT},
+      createTime = #{record.createTime,jdbcType=TIMESTAMP},
+      updateBy = #{record.updateBy,jdbcType=INTEGER},
+      updateByType = #{record.updateByType,jdbcType=INTEGER},
+      updateTime = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mogoroom.service.cntr.dao.SaleContractDetail">
+    update cntr_salecontract_detail
+    <set>
+      <if test="saleContractId != null">
+        saleContractId = #{saleContractId,jdbcType=INTEGER},
+      </if>
+      <if test="confirmChannel != null">
+        confirmChannel = #{confirmChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="freeForegiftActivity != null">
+        freeForegiftActivity = #{freeForegiftActivity,jdbcType=TINYINT},
+      </if>
+      <if test="valid != null">
+        valid = #{valid,jdbcType=BIT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null">
+        createBy = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createByType != null">
+        createByType = #{createByType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null">
+        updateBy = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateByType != null">
+        updateByType = #{updateByType,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mogoroom.service.cntr.dao.SaleContractDetail">
+    update cntr_salecontract_detail
+    set saleContractId = #{saleContractId,jdbcType=INTEGER},
+      confirmChannel = #{confirmChannel,jdbcType=VARCHAR},
+      freeForegiftActivity = #{freeForegiftActivity,jdbcType=TINYINT},
+      valid = #{valid,jdbcType=BIT},
+      remark = #{remark,jdbcType=VARCHAR},
+      createBy = #{createBy,jdbcType=INTEGER},
+      createByType = #{createByType,jdbcType=TINYINT},
+      createTime = #{createTime,jdbcType=TIMESTAMP},
+      updateBy = #{updateBy,jdbcType=INTEGER},
+      updateByType = #{updateByType,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="batchInsert" parameterType="java.util.List">
+    <!--
+      WARNING - @mbg.generated
+      这个节点为代码生成工具生成，请不要修改!
+      @author hewei
+    -->
+    insert into cntr_salecontract_detail (id, saleContractId, confirmChannel, freeForegiftActivity, valid, remark, createBy, createByType, createTime, updateBy, updateByType, updateTime)
+    values
+    <foreach collection="list" item="item" separator=",">
+       (#{item.id,jdbcType=INTEGER}, #{item.saleContractId,jdbcType=INTEGER}, #{item.confirmChannel,jdbcType=VARCHAR}, #{item.freeForegiftActivity,jdbcType=TINYINT}, #{item.valid,jdbcType=BIT}, #{item.remark,jdbcType=VARCHAR}, #{item.createBy,jdbcType=INTEGER}, #{item.createByType,jdbcType=TINYINT}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.updateBy,jdbcType=INTEGER}, #{item.updateByType,jdbcType=INTEGER}, #{item.updateTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+</mapper>

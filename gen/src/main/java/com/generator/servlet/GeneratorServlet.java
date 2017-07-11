@@ -1,6 +1,7 @@
 package com.generator.servlet;
 
 import com.generator.param.GeneratorParam;
+import com.itfsw.mybatis.generator.plugins.BatchInsertPlugin;
 import com.mysql.jdbc.exceptions.jdbc4.CommunicationsException;
 import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
 import org.apache.commons.lang.StringUtils;
@@ -94,6 +95,7 @@ public class GeneratorServlet extends HttpServlet {
     		DefaultShellCallback callback = new DefaultShellCallback(overwrite);
     		// 4.创建 mybatis的生成器
     		MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+
     		// 5.执行，关闭生成器
     		String result = "000000";
     		try {
@@ -181,6 +183,7 @@ public class GeneratorServlet extends HttpServlet {
 			dirFile.mkdirs();
 		}
 		Context context = config.getContexts().get(0);
+
 		//配置数据库属性
 		JDBCConnectionConfiguration jdbcConnectionConfiguration = context.getJdbcConnectionConfiguration();
 		String connection = "jdbc:mysql://" + param.getConnection() + "/" + param.getDataBase();

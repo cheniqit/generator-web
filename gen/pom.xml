@@ -8,6 +8,19 @@
     <artifactId>gen</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <dependencies>
+        <!-- jdbc 依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.34</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itfsw</groupId>
+            <artifactId>mybatis-generator-plugin</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -21,9 +34,6 @@
             </plugin>
         </plugins>
     </build>
-    <dependencies>
-
-    </dependencies>
 
 
 </project>
